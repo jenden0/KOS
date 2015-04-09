@@ -362,4 +362,18 @@ namespace kOS.Function
             ReturnValue = shared.Cpu.DumpVariables();
         }
     }
+
+	[Function("isdef")]
+	public class FunctionIsDef : FunctionBase
+	{
+		public override void Execute(SharedObjects shared)
+		{
+			try {
+				PopValueAssert(shared);
+				ReturnValue = true;
+			} catch (KOSUndefinedIdentifierException) {
+				ReturnValue = false;
+			}
+		}
+	}
 }
